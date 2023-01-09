@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "GAN 기반 이미지 변환 논문 리뷰"
+comments: true
+tags: [pix2pix, GAN]
+---
+
+
+GAN기반 이미지 변환 논문 리뷰
+===
+
+## 논문제목 : Image-to_image Translation with Conditional Adversarial Networks
+
+
