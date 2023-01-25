@@ -126,23 +126,14 @@ class SRCNN_tutoral(nn.Module):
 편하게 쓴 forward 메서드
 
 ```python
-
     def forward(self, x):
-
         x = self.conv1(x)
-
         x = self.relu()
-
         x = self.conv2(x)
-
         x = self.relu()
-
         x = self.conv3(x)
 
-        
-
         return x
-
 ```
 
 
