@@ -1,10 +1,7 @@
 ---
-layout: single
-title:  "jupyter notebook 변환하기!"
+layout: post
+title:  "SRCNN 설계-코드연습"
 categories: coding
-tag: [python, blog, jekyll]
-toc: true
-author_profile: false
 ---
 
 <head>
