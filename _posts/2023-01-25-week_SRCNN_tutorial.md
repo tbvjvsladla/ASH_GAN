@@ -114,7 +114,7 @@ class SRCNN_tutoral(nn.Module):
 ```
 
 설계한 SRCNN 네트워크 구조의 이미지는 아래와 같다   
-![img_SRCNN](../images/images_cha-suyeon_post_950bc827-734e-4782-b40c-bb6705e2fae8_image.png)   
+![img_SRCNN](../images/images_cha.png)
 채널이 조금 안맞는거 같지만 튜토리얼은 넘어가자...   
 그림상 self.conv2 = nn.Conv2d(64, 128, kernel_size=5, padding=5//2)   
 128이 아니라 32 인거같음
