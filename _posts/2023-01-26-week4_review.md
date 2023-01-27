@@ -653,7 +653,7 @@ def ini_weight(m): #m -> Layer을 줄여쓴 연구자들끼리의 약속
         print("ConvTranspose2D model init!")
     
     elif type(m) == nn.BatchNorm2d:
-        nn.init.normal_(m.weight.data, mean=0.0, std=0.02)
+        nn.init.normal_(m.weight.data, mean=1.0, std=0.02)
         # batchnorm은 1 주변에서 정규화 하는 모델
         nn.init.constant_(m.bias.data, 0.)
         # 하여 바이어스가 1인 것을 특정 val(0.) 값으로 채우는
