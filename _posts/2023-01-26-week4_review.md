@@ -399,7 +399,7 @@ class Pix2Pix_Generator(nn.Module):
         encoder_5 = self.encoder_5(encoder_4)
         encoder_6 = self.encoder_6(encoder_5)
 
-        middle = self.middel(encoder_6)
+        middle = self.middle(encoder_6)
 
         #skip connection 화살표 두개 합치는거니까 torch.cat 함수 사용함
         cat_6 = torch.cat((middle, encoder_6), dim=1)
