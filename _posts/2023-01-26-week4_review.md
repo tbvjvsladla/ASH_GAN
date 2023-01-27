@@ -316,7 +316,15 @@ class Pix2Pix_Generator(nn.Module):
             # 이방법은 nn.conv2d와 이미지를 비교해보면 아주 쉽게 이해될것이다.
             nn.BatchNorm2d(512)
         )
+```
+### Conv2d 함수 구동 방식   
+![img_conv2d](../images/keras_conv2d_padding.gif)   
 
+### ConvTranspose2d 함수 구동방식   
+![img_contr2d](../images/ConvTranspose2d.png)
+
+
+```python
         self.decoder_6 = nn.Sequential(
             nn.ReLU(True),
             nn.ConvTranspose2d(1024, 512, kernel_size = 4, stride = 2, padding = 1, bias = False),
@@ -341,7 +349,11 @@ class Pix2Pix_Generator(nn.Module):
             nn.BatchNorm2d(512),
             nn.Dropout(0.5)
         )
+```
+### Dorpout함수 구동방식
+![img_droup](../images/droup_EY8R7nS10y5kQzOx.png)
 
+```python
         self.decoder_4 = nn.Sequential(
             nn.ReLU(True),
             nn.ConvTranspose2d(1024, 512, kernel_size = 4, stride = 2, padding = 1, bias = False),
@@ -610,14 +622,19 @@ Local mininum point에 빠지는 경우를 방지하기 위해 구현한다 보�
 + lr(Learning rate) : Gradient decent 알고리즘(GMP를 찾는 알고리즘)을 적용시킬 때,   
 
 얼마만큼 경사각을 내려갈 것인지 정하는 부분)   
-
-
-
+   
+![model_init_1](../images/model_init_1.png)   
+![model_init_2](../images/model_init_2.png)   
+모델의 초기화 과정에서 초기화를 어떻게 하느냐에 따라 학습 결과가   
+매우 나빠질 수 있다.
 
 
 이니셜라이즈 할때 활성화함수(Activation func)와 매칭되는 활성화 방법이 각 함수별로 있는 듯   
+ + ex ) ReLU 활성화 함수에는 He(kaiming) Initialization 방법이 가장 적합하고,   
+tanh의 경우 Xavier Intialization 방법이 적합하다.   
+BN 레이어의 경우 weight는 1, bias는 0으로 초기화하는게 일반적이다.
 
-ex)LeRU -> Kaiming
+
 
 
 
@@ -647,3 +664,41 @@ def model_init(model):
     model.apply(ini_weight)
     return model
 ```
+
+위 모델초기화 코드의 경우 아래의 코드처럼 클래스로 짤 수 도 있다.  
+```python
+class Model(nn.Module):
+    def __init__(self):
+
+  	self.apply(self._init_weights)
+      def _init_weights(self, module):
+          if isinstance(module, nn.Linear):
+              module.weight.data.normal_(mean=0.0, std=1.0)
+              if module.bias is not None:
+                  module.bias.data.zero_()
+
+          elif isinstance(module, nn.LayerNorm):
+              module.bias.data.zero_()
+              module.weight.data.fill_(1.0)
+```
+
+또한 비슷한 초기화 함수는 아래 코드가 있다
+```python
+def initialize_weights(m):
+  if isinstance(m, nn.Conv2d):
+      nn.init.kaiming_uniform_(m.weight.data,nonlinearity='relu')
+      if m.bias is not None:
+          nn.init.constant_(m.bias.data, 0)
+  elif isinstance(m, nn.BatchNorm2d):
+      nn.init.constant_(m.weight.data, 1)
+      nn.init.constant_(m.bias.data, 0)
+  elif isinstance(m, nn.Linear):
+      nn.init.kaiming_uniform_(m.weight.data)
+      nn.init.constant_(m.bias.data, 0)
+      
+model=CNN() #사전에 설계한 CNN 모델(클래스)
+model.apply(initialize_weights)
+```
+
+위 두 코드에서 `isinstance(확인하고자 하는 데이터 값, 확인하고자 하는 데이터 타입)`   
+이다. 이거를 `type(m) == nn.BatchNorm2d:`이렇게 쓴것이다. 
