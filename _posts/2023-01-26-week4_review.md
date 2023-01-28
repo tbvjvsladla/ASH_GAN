@@ -318,10 +318,10 @@ class Pix2Pix_Generator(nn.Module):
         )
 ```
 ### Conv2d 함수 구동 방식   
-![img_conv2d](../images/keras_conv2d_padding.gif)   
+![img_conv2d]({{site.url}}/images/keras_conv2d_padding.gif)   
 
 ### ConvTranspose2d 함수 구동방식   
-![img_contr2d](../images/ConvTranspose2d.png)
+![img_contr2d]({{site.url}}/images/ConvTranspose2d.png)
 
 
 ```python
@@ -351,7 +351,7 @@ class Pix2Pix_Generator(nn.Module):
         )
 ```
 ### Dorpout함수 구동방식
-![img_droup](../images/droup_EY8R7nS10y5kQzOx.png)
+![img_droup]({{site.url}}/images/droup_EY8R7nS10y5kQzOx.png)
 
 ```python
         self.decoder_4 = nn.Sequential(
@@ -430,7 +430,7 @@ class Pix2Pix_Generator(nn.Module):
 ```python
 Pix2Pix_Generator()
 ```
-![img_u_net](../images/U-Net-architecture-.png)   
+![img_u_net]({{site.url}}/images/U-Net-architecture-.png)   
 사용한 u-net 아키텍쳐
 
 <pre>
@@ -623,8 +623,8 @@ Local mininum point에 빠지는 경우를 방지하기 위해 구현한다 보�
 
 얼마만큼 경사각을 내려갈 것인지 정하는 부분)   
    
-![model_init_1](../images/model_init_1.png)   
-![model_init_2](../images/model_init_2.png)   
+![model_init_1]({{site.url}}/images/model_init_1.png)   
+![model_init_2]({{site.url}}/images/model_init_2.png)   
 모델의 초기화 과정에서 초기화를 어떻게 하느냐에 따라 학습 결과가   
 매우 나빠질 수 있다.
 
