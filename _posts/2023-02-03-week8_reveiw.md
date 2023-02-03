@@ -1,9 +1,7 @@
 ---
----
 layout: post
 title:  "GAN 수업 - 설계한 모델 객체화&옵티마이저, main구문 작성"
 categories: coding
----
 ---
 
 <head>
